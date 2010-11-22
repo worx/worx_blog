@@ -1,0 +1,299 @@
+<?php
+
+include_once('worx_blog.features.inc');
+
+function worx_blog_perm() {
+  return array('publish blogs without review', 'update blogs without review');
+}
+
+function worx_blog_nodeapi(&$node, $op, $a3 = NULL, $a4 = NULL) {
+  if ($node->type == 'blog') {
+    switch ($op) {
+      case 'presave':
+        if (!isset($node->nid) && !user_access('publish blogs with out review')) {
+          worx_blog_actions($node, $user);
+          break;
+        }
+        if (is_numeric($node->nid) && !user_access('update blogs with out review')) {
+          worx_blog_actions($node, $user);
+          break;
+        }
+        break;
+    }
+  }
+}
+
+function worx_blog_actions(&$node, $user) {
+  $users = variable_get('blog_admin_message_recipients', '');
+  $context['message'] = t('Your blog entry has been unpublished pending review by an administrator, and should be reviewed shortly. Thank you for your patience.');
+  if ($users) {
+    $emails = explode(', ', $users);
+    $context['recipients'] = $emails;
+    actions_do(array('worx_blog_send_emails_action', 'system_message_action'), $node, $context);
+  }
+  else {
+    actions_do(array('system_message_action'), $node, $context);
+  }
+}
+
+function worx_blog_action_info() {
+  return array(
+    'worx_blog_send_emails_action' => array(
+      'description' => t('Sends notification of a new or updated blog node to administrators.'),
+      'type' => 'node',
+      'configurable' => TRUE,
+      'hooks' => array(
+        'node' => array('presave', 'insert', 'update'),
+      )
+    ),
+    'worx_blog_add_blog_admin_action' => array(
+      'type' => 'user',
+      'description' => t('Add blog administrator role'),
+    ),
+    'worx_blog_remove_blog_admin_action' => array(
+      'type' => 'user',
+      'description' => t('Remove blog administrator role'),
+    ),
+    'worx_blog_add_trusted_blogger_action' => array(
+      'type' => 'user',
+      'description' => t('Add trusted blogger role'),
+    ),
+    'worx_blog_remove_trusted_blogger_action' => array(
+      'type' => 'user',
+      'description' => t('Remove trusted blogger role'),
+    ),
+    'worx_blog_add_untrusted_blogger_action' => array(
+      'type' => 'user',
+      'description' => t('Add untrusted blogger role'),
+    ),
+    'worx_blog_remove_untrusted_blogger_action' => array(
+      'type' => 'user',
+      'description' => t('Remove untrusted blogger role'),
+    ),
+  );
+}
+
+function worx_blog_add_blog_admin_action($user, $context) {
+  $available_roles = user_roles(TRUE);
+  $roles = $user->roles;
+  foreach ($available_roles as $key => $role) {
+    if ($role == 'blog administrator') {
+      $add_roles[$key] = $role;
+    }
+  }
+  $roles += $add_roles;
+  user_save($user, array('roles' => $roles));
+}
+
+function worx_blog_add_blog_admin_action_form() {
+  $form = array();
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Promote to Blog Administrator',
+  );
+  return $form;
+}
+
+function worx_blog_add_blog_admin_action_submit(&$form, &$form_state) {
+  
+}
+
+function worx_blog_remove_blog_admin_action($user, $context) {
+  $available_roles = user_roles(TRUE);
+  $roles = $user->roles;
+  foreach ($available_roles as $key => $role) {
+    if ($role == 'blog administrator') {
+      $remove_roles[$key] = $role;
+    }
+  }
+  $roles = array_diff($roles, $remove_roles);
+  user_save($user, array('roles' => $roles));
+}
+
+function worx_blog_remove_blog_admin_action_form() {
+  $form = array();
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Demote from Blog Administrator',
+  );
+  return $form;
+}
+
+function worx_blog_remove_blog_admin_action_submit(&$form, &$form_state) {
+  
+}
+
+function worx_blog_add_trusted_blogger_action($user, $context) {
+  $available_roles = user_roles(TRUE);
+  $roles = $user->roles;
+  foreach ($available_roles as $key => $role) {
+    if ($role == 'trusted blogger') {
+      $add_roles[$key] = $role;
+    }
+  }
+  $roles += $add_roles;
+  user_save($user, array('roles' => $roles));
+}
+
+function worx_blog_add_trusted_blogger_action_form() {
+  $form = array();
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Promote to Trusted Blogger',
+  );
+  return $form;
+}
+
+function worx_blog_add_trusted_blogger_action_submit(&$form, &$form_state) {
+  
+}
+
+function worx_blog_remove_trusted_blogger_action($user, $context) {
+  $available_roles = user_roles(TRUE);
+  $roles = $user->roles;
+  foreach ($available_roles as $key => $role) {
+    if ($role == 'trusted blogger') {
+      $remove_roles[$key] = $role;
+    }
+  }
+  $roles = array_diff($roles, $remove_roles);
+  user_save($user, array('roles' => $roles));
+}
+
+function worx_blog_remove_trusted_blogger_action_form() {
+  $form = array();
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Demote from Trusted Blogger',
+  );
+  return $form;
+}
+
+function worx_blog_remove_trusted_blogger_action_submit(&$form, &$form_state) {
+  
+}
+
+function worx_blog_add_untrusted_blogger_action($user, $context) {
+  $available_roles = user_roles(TRUE);
+  $roles = $user->roles;
+  foreach ($available_roles as $key => $role) {
+    if ($role == 'untrusted blogger') {
+      $add_roles[$key] = $role;
+    }
+  }
+  $roles += $add_roles;
+  user_save($user, array('roles' => $roles));
+}
+
+function worx_blog_add_untrusted_blogger_action_form() {
+  $form = array();
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Promote to Untrusted Blogger',
+  );
+  return $form;
+}
+
+function worx_blog_add_untrusted_blogger_action_submit(&$form, &$form_state) {
+  
+}
+
+function worx_blog_remove_untrusted_blogger_action($user, $context) {
+  $available_roles = user_roles(TRUE);
+  $roles = $user->roles;
+  foreach ($available_roles as $key => $role) {
+    if ($role == 'untrusted blogger') {
+      $remove_roles[$key] = $role;
+    }
+  }
+  $roles = array_diff($roles, $remove_roles);
+  user_save($user, array('roles' => $roles));
+}
+
+function worx_blog_remove_untrusted_blogger_action_form() {
+  $form = array();
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Demote from Untrusted Blogger',
+  );
+  return $form;
+}
+
+function worx_blog_remove_untrusted_blogger_action_submit(&$form, &$form_state) {
+  
+}
+
+function worx_blog_send_emails_action($object, $context) {
+  global $user;
+  switch ($context['hook']) {
+    case 'nodeapi':
+      $node = $context['node'];
+      break;
+    default:
+      $node = $object;
+  }
+  $language = language_default();
+  $params = array('context' => $context, 'node' => $node);
+  $recipients = $context['recipients'];
+  if (is_array($recipients)) {
+    foreach ($recipients as $recipient) {
+      if (drupal_mail('worx_blog', 'new blog', $recipient, $language, $params)) {
+        watchdog('action', 'Sent email to %recipient', array('%recipient' => $recipient));
+      }
+      else {
+        watchdog('error', 'Unable to send email to %recipient', array('%recipient' => $recipient));
+      }
+    }
+  }
+  else {
+    if (drupal_mail('worx_blog', 'new blog', $recipients, $language, $params)) {
+      watchdog('action', 'Sent email to %recipient', array('%recipient' => $recipient));
+    }
+    else {
+      watchdog('error', 'Unable to send email to %recipient', array('%recipient' => $recipient));
+    }
+  }
+}
+
+function worx_blog_mail($key, &$message, $params) {
+  $language = $message['language'];
+  $variables = user_mail_tokens($params['account'], $language);
+  switch($key) {
+    case 'new blog':
+    $message['subject'] = t('New Blog notification from !site', $variables, $language->language);
+    $message['body'][] = t("Dear !username\n\nThere is new blog content available for review on the site.  The blog has been included for your convenience:", $variables, $language->language);
+    $message['body'][] .= t('Blog Title:') . $params['node']->title;
+    $message['body'][] .= t('Blog Body:') . worx_blog_mail_format($params['node']->body);
+    if ($params['node']->nid) {
+      $message['body'][] .= t('Blog Link:') . url('node/'. $params['node']->nid, array('absolute' => TRUE));
+    }
+    $message['body'][] .= t('Administration Link:') . url('blog/admin', array('absolute' => TRUE));
+    break;
+  }
+}
+
+function worx_blog_mail_format($string) {
+  $tags = array(
+    '</h1>', '</h2>', '</h3>', '</h4>', '</h5>', '</h6>',
+    '</p>', '<br>', '<br/>', '<br />', '</div>', '</pre>',
+    '</code>', '</ul>', '</ol>', '</li>', '</dl>', '</dd>',
+    '</dt>',
+  );
+  foreach ($tags AS $tag) {
+    $string = str_replace($tag, $tag ."\n", $string);
+  }
+  $result = check_markup($string, array('dd'));
+
+  return $result;
+}
+
+function worx_blog_form_alter(&$form, $form_state, $form_id) {
+  if ($form_id == 'blog_node_form') {
+    if (!isset($form['#node']->nid) && !user_access('publish blogs with out review')) {
+      $form['options']['status']['#value'] = 0;
+    }
+    if (isset($form['#node']->nid) && !user_access('update blogs with out review')) {
+      $form['options']['status']['#value'] = 0;
+    }
+  }
+}
