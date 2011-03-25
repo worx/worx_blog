@@ -289,10 +289,10 @@ function worx_blog_mail_format($string) {
 
 function worx_blog_form_alter(&$form, $form_state, $form_id) {
   if ($form_id == 'blog_node_form') {
-    if (!isset($form['#node']->nid) && !user_access('publish blogs with out review')) {
+    if (!isset($form['#node']->nid) && !user_access('publish blogs without review')) {
       $form['options']['status']['#value'] = 0;
     }
-    if (isset($form['#node']->nid) && !user_access('update blogs with out review')) {
+    if (isset($form['#node']->nid) && !user_access('update blogs without review')) {
       $form['options']['status']['#value'] = 0;
     }
   }
