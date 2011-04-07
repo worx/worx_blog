@@ -2,19 +2,25 @@
 
 include_once('worx_blog.features.inc');
 
+/**
+ * Implementation of hook_perm().
+ */
 function worx_blog_perm() {
   return array('publish blogs without review', 'update blogs without review');
 }
 
+/**
+ * Implementation of hook_nodeapi()
+ */
 function worx_blog_nodeapi(&$node, $op, $a3 = NULL, $a4 = NULL) {
   if ($node->type == 'blog') {
     switch ($op) {
       case 'presave':
-        if (!isset($node->nid) && !user_access('publish blogs with out review')) {
+        if (!isset($node->nid) && !user_access('publish blogs without review')) {
           worx_blog_actions($node, $user);
           break;
         }
-        if (is_numeric($node->nid) && !user_access('update blogs with out review')) {
+        if (is_numeric($node->nid) && !user_access('update blogs without review')) {
           worx_blog_actions($node, $user);
           break;
         }
