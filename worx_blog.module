@@ -6,21 +6,40 @@ include_once('worx_blog.features.inc');
  * Implementation of hook_perm().
  */
 function worx_blog_perm() {
-  return array('publish blogs without review', 'update blogs without review');
+  return array('worx_blog change templates'); 
 }
 
 /**
- * Implementation of hook_nodeapi()
+ * Implementation of hook_menu().
+ */
+function worx_blog_menu() {
+  $items['admin/settings/worx_blog'] = array(
+    'title' => 'Worx Blog: Admin',
+    'description' => 'Change the look and feel of the worx_blog module.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('worx_blog_admin_settings_form'),
+    'access arguments' => array('worx_blog change templates'),
+    'file' => 'worx_blog.admin.inc',
+    'file path' => drupal_get_path('module', 'worx_blog') . '/includes',
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  return $items;
+}
+  
+
+/**
+ * Implementation of hook_nodeapi().
  */
 function worx_blog_nodeapi(&$node, $op, $a3 = NULL, $a4 = NULL) {
   if ($node->type == 'blog') {
     switch ($op) {
       case 'presave':
-        if (!isset($node->nid) && !user_access('publish blogs without review')) {
-          worx_blog_actions($node, $user);
+        global $user;
+        if ($user->uid == 1) {
           break;
         }
-        if (is_numeric($node->nid) && !user_access('update blogs without review')) {
+        if (!in_array('blog administrator', $user->roles) && !in_array('trusted blogger', $user->roles)) {
           worx_blog_actions($node, $user);
           break;
         }
@@ -295,11 +314,39 @@ function worx_blog_mail_format($string) {
 
 function worx_blog_form_alter(&$form, $form_state, $form_id) {
   if ($form_id == 'blog_node_form') {
-    if (!isset($form['#node']->nid) && !user_access('publish blogs without review')) {
+    global $user;
+    if ($user->uid == 1) {
+      $form['options']['status']['#value'] = 1;
+    }
+    elseif (!in_array('blog administrator', $user->roles) && !in_array('trusted blogger', $user->roles)) {
       $form['options']['status']['#value'] = 0;
     }
-    if (isset($form['#node']->nid) && !user_access('update blogs without review')) {
-      $form['options']['status']['#value'] = 0;
-    }
+  }
+}
+
+/**
+ * Implementation of hook_ctools_plugin_directory()
+ */
+function worx_blog_ctools_plugin_directory($owner, $plugin_type) {
+  if ($owner == 'ctools') {
+    return 'plugins/' . $plugin_type;;
+  }
+}
+
+/**
+ * Implementation of hook_ctools_render_alter($info, $page, $args, $contexts, $task, $subtask).
+ */
+function worx_blog_ctools_render_alter($info, $page, $args, $contexts, $task, $subtask){
+  if ($subtask['name'] == 'worx_blog' || $task['name'] == 'node_view' || $task['name'] == 'term_view') {
+    drupal_add_css(drupal_get_path('module', 'worx_blog') . "/css/worx_blog.css", 'module', 'all', FALSE);
+  }
+}
+
+/**
+ * Implementation of hook_views_pre_render().
+ */
+function worx_blog_views_pre_render(&$view) {
+  if ($view->name == 'blog') {
+    drupal_add_css(drupal_get_path('module', 'worx_blog') . "/css/worx_blog.css", 'module', 'all', FALSE);
   }
 }

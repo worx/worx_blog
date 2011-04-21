@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * Implementation of hook_install().
+ */
+function worx_blog_install() {
+  variable_set('worx_blog_list_template', 'worx_blog_list_template_one');
+  variable_set('worx_blog_node_template', 'worx_blog_node_template_one');
+  variable_set('worx_blog_vocab_template', 'worx_blog_vocab_template_one');
+}
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function worx_blog_uninstall() {
+  variable_del('worx_blog_list_template');
+  variable_del('worx_blog_node_template');
+  variable_del('worx_blog_vocab_template');
+}

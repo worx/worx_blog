@@ -14,6 +14,45 @@ function worx_blog_ctools_plugin_api() {
 }
 
 /**
+ * Implementation of hook_imagecache_default_presets().
+ */
+function worx_blog_imagecache_default_presets() {
+  $items = array(
+    'worx_blog_be_scale_100w' => array(
+      'presetname' => 'worx_blog_be_scale_100w',
+      'actions' => array(
+        '0' => array(
+          'weight' => '0',
+          'module' => 'imagecache',
+          'action' => 'imagecache_scale',
+          'data' => array(
+            'width' => '100',
+            'height' => '',
+            'upscale' => 0,
+          ),
+        ),
+      ),
+    ),
+    'worx_blog_be_scale_200w' => array(
+      'presetname' => 'worx_blog_be_scale_200w',
+      'actions' => array(
+        '0' => array(
+          'weight' => '0',
+          'module' => 'imagecache',
+          'action' => 'imagecache_scale',
+          'data' => array(
+            'width' => '200',
+            'height' => '',
+            'upscale' => 0,
+          ),
+        ),
+      ),
+    ),
+  );
+  return $items;
+}
+
+/**
  * Implementation of hook_views_api().
  */
 function worx_blog_views_api() {
