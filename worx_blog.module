@@ -337,7 +337,7 @@ function worx_blog_ctools_plugin_directory($owner, $plugin_type) {
  * Implementation of hook_ctools_render_alter($info, $page, $args, $contexts, $task, $subtask).
  */
 function worx_blog_ctools_render_alter($info, $page, $args, $contexts, $task, $subtask){
-  if ($subtask['name'] == 'worx_blog' || $task['name'] == 'node_view' || $task['name'] == 'term_view') {
+  if ($subtask['name'] == 'worx_blog' || $subtask['name'] == 'home' || $task['name'] == 'node_view' || $task['name'] == 'term_view') {
     drupal_add_css(drupal_get_path('module', 'worx_blog') . "/css/worx_blog.css", 'module', 'all', FALSE);
   }
 }
