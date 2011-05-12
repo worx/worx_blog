@@ -7,4 +7,6 @@
   #worx-blog-template-one .views-row-last .views-field-nothing {border: none;}
   #worx-blog-template-one .pane-field-worx-blog-be-image {float: left; margin-right: 10px;}
   #worx-blog-template-one .pane-field-worx-blog-be-image .field-item {margin-bottom: 10px;}
-  #block-views-blog-block_1 .worx-blog-template-one .views-field-view-node {text-align: right; margin-right: 10px;}
+  .worx-blog-template-one .views-field-view-node {text-align: right; margin-right: 10px;}
+  .worx-blog-template-one .views-field-nothing {clear: both; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #D2D2D2;}
+  .worx-blog-template-one .views-row-last .views-field-nothing {border: none;}
