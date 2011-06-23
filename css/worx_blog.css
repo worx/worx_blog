@@ -1,6 +1,8 @@
 /* Worx Blog CSS */
   /* Template One */
-  #worx-blog-template-one .views-field-field-worx-blog-be-image-fid, #block-views-blog-block_1 .worx-blog-template-one .views-field-field-worx-blog-be-image-fid {float: left; margin-right: 10px;}
+  #worx-blog-template-one .views-field-field-worx-blog-be-image-fid, .worx-blog-template-one .views-field-field-worx-blog-be-image-fid {float: left; margin-right: 10px;}
+  #worx-blog-template-one .views-field-field-worx-blog-be-image-fid-1 {float: left; clear: left; margin-right: 10px; width: 200px;}
+  #worx-blog-template-one .views-field-field-worx-blog-be-image-fid-1 .field-item {float: left; margin-right: 5px;}
   #worx-blog-template-one .views-field-teaser .field-content > p {margin-top: 0;}
   #worx-blog-template-one .views-field-view-node {float: right; margin-right: 10px;}
   #worx-blog-template-one .views-field-nothing {clear: both; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #D2D2D2;}

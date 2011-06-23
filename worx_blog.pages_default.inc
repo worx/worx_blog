@@ -8,80 +8,6 @@ function worx_blog_default_page_manager_handlers() {
   $handler = new stdClass;
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
-  $handler->name = 'term_view_panel_context';
-  $handler->task = 'term_view';
-  $handler->subtask = '';
-  $handler->handler = 'panel_context';
-  $handler->weight = 0;
-  $handler->conf = array(
-    'title' => 'Worx Blog: Vocab Template One',
-    'no_blocks' => 0,
-    'pipeline' => 'standard',
-    'css_id' => 'worx-blog-template-one',
-    'css' => '',
-    'contexts' => array(),
-    'relationships' => array(),
-    'access' => array(
-      'plugins' => array(
-        0 => array(
-          'name' => 'worx_plugins_vocab_access',
-          'settings' => array(
-            'worx_vocab' => array(
-              'Categories' => 'Categories',
-            ),
-          ),
-          'not' => FALSE,
-        ),
-        1 => array(
-          'name' => 'worx_blog_vocab_template',
-          'settings' => array(
-            'worx_blog_vocab_template' => 'worx_blog_vocab_template_one',
-          ),
-          'not' => FALSE,
-        ),
-      ),
-      'logic' => 'and',
-    ),
-  );
-  $display = new panels_display;
-  $display->layout = 'onecol';
-  $display->layout_settings = array();
-  $display->panel_settings = array(
-    'style_settings' => array(
-      'default' => NULL,
-      'center' => NULL,
-      'middle' => NULL,
-    ),
-  );
-  $display->cache = array();
-  $display->title = '%term:name';
-  $display->content = array();
-  $display->panels = array();
-    $pane = new stdClass;
-    $pane->pid = 'new-1';
-    $pane->panel = 'middle';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'blog-panel_pane_3';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array();
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $display->content['new-1'] = $pane;
-    $display->panels['middle'][0] = 'new-1';
-  $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = '0';
-  $handler->conf['display'] = $display;
-
-  $export['term_view_panel_context'] = $handler;
-  $handler = new stdClass;
-  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
-  $handler->api_version = 1;
   $handler->name = 'worx_blog_node_view_panel_context';
   $handler->task = 'node_view';
   $handler->subtask = '';
@@ -134,17 +60,11 @@ function worx_blog_default_page_manager_handlers() {
     $pane = new stdClass;
     $pane->pid = 'new-1';
     $pane->panel = 'middle';
-    $pane->type = 'content_field';
-    $pane->subtype = 'field_worx_blog_be_image';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'blog-panel_pane_5';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array(
-      'label' => 'normal',
-      'formatter' => 'imagefield__lightbox2__worx_blog_be_scale_200w__original',
-      'context' => 'argument_nid_1',
-      'override_title' => 1,
-      'override_title_text' => '<none>',
-    );
+    $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -221,10 +141,84 @@ function worx_blog_default_page_manager_handlers() {
     $display->content['new-4'] = $pane;
     $display->panels['middle'][3] = 'new-4';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-1';
+  $display->title_pane = '0';
   $handler->conf['display'] = $display;
 
   $export['worx_blog_node_view_panel_context'] = $handler;
+  $handler = new stdClass;
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
+  $handler->name = 'worx_blog_term_view_panel_context';
+  $handler->task = 'term_view';
+  $handler->subtask = '';
+  $handler->handler = 'panel_context';
+  $handler->weight = 0;
+  $handler->conf = array(
+    'title' => 'Worx Blog: Vocab Template One',
+    'no_blocks' => 0,
+    'pipeline' => 'standard',
+    'css_id' => 'worx-blog-template-one',
+    'css' => '',
+    'contexts' => array(),
+    'relationships' => array(),
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'worx_plugins_vocab_access',
+          'settings' => array(
+            'worx_vocab' => array(
+              'Categories' => 'Categories',
+            ),
+          ),
+          'not' => FALSE,
+        ),
+        1 => array(
+          'name' => 'worx_blog_vocab_template',
+          'settings' => array(
+            'worx_blog_vocab_template' => 'worx_blog_vocab_template_one',
+          ),
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
+  );
+  $display = new panels_display;
+  $display->layout = 'onecol';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'center' => NULL,
+      'middle' => NULL,
+    ),
+  );
+  $display->cache = array();
+  $display->title = '%term:name';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass;
+    $pane->pid = 'new-1';
+    $pane->panel = 'middle';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'blog-panel_pane_3';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $display->content['new-1'] = $pane;
+    $display->panels['middle'][0] = 'new-1';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = '0';
+  $handler->conf['display'] = $display;
+
+  $export['worx_blog_term_view_panel_context'] = $handler;
   return $export;
 }
 

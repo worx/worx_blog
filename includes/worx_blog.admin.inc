@@ -41,6 +41,16 @@ function worx_blog_admin_settings_form() {
     '#default_value' => variable_get('worx_blog_vocab_template', 'worx_blog_vocab_template_one'),
     '#required' => TRUE,
   );
+  $form['blog_read_all_path'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Blog\'s Block\'s Read All Link Path'),
+    '#default_value' => variable_get('worx_blog_read_all_path', ''),
+  );
+  $form['blog_read_all_text'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Blog\'s Block\'s Read All Link Text'),
+    '#default_value' => variable_get('worx_blog_read_all_text', ''),
+  );
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Save'),
@@ -59,5 +69,7 @@ function worx_blog_admin_settings_form_submit($form, &$form_state) {
   variable_set('worx_blog_list_template', $form_state['values']['blog_list']);
   variable_set('worx_blog_node_template', $form_state['values']['blog_node']);
   variable_set('worx_blog_vocab_template', $form_state['values']['blog_vocab']);
+  variable_set('worx_blog_read_all_path', $form_state['values']['blog_read_all_path']);
+  variable_set('worx_blog_read_all_text', $form_state['values']['blog_read_all_text']);
   drupal_set_message('Configuration has been saved.');
 }

@@ -196,7 +196,7 @@ function worx_blog_views_default_views() {
       ),
       'relationship' => 'none',
     ),
-    'addthis_button' => array(
+    'addthis' => array(
       'label' => '',
       'alter' => array(
         'alter_text' => FALSE,
@@ -216,12 +216,12 @@ function worx_blog_views_default_views() {
         'html' => FALSE,
       ),
       'empty' => '',
-      'hide_empty' => FALSE,
-      'empty_zero' => FALSE,
+      'hide_empty' => 0,
+      'empty_zero' => 0,
       'exclude' => 0,
-      'id' => 'addthis_button',
+      'id' => 'addthis',
       'table' => 'node',
-      'field' => 'addthis_button',
+      'field' => 'addthis',
       'relationship' => 'none',
     ),
     'nothing' => array(
@@ -423,6 +423,37 @@ function worx_blog_views_default_views() {
       ),
       'relationship' => 'none',
     ),
+    'addthis' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => FALSE,
+        'text' => '',
+        'make_link' => FALSE,
+        'path' => '',
+        'alt' => '',
+        'link_class' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'trim' => FALSE,
+        'max_length' => '',
+        'word_boundary' => TRUE,
+        'ellipsis' => TRUE,
+        'strip_tags' => FALSE,
+        'html' => FALSE,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'exclude' => 0,
+      'id' => 'addthis',
+      'table' => 'node',
+      'field' => 'addthis',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+      'relationship' => 'none',
+    ),
     'view_node' => array(
       'label' => '',
       'alter' => array(
@@ -458,6 +489,11 @@ function worx_blog_views_default_views() {
     ),
   ));
   $handler->override_option('css_class', 'worx-blog-template-one');
+  $handler->override_option('footer', '<?php
+print l(variable_get(\'worx_blog_read_all_text\', \'Read All\'), variable_get(\'worx_blog_read_all_path\', \'blog\'));
+?>');
+  $handler->override_option('footer_format', '3');
+  $handler->override_option('footer_empty', 0);
   $handler->override_option('use_ajax', TRUE);
   $handler->override_option('items_per_page', 1);
   $handler->override_option('use_pager', 'mini');
@@ -1090,10 +1126,121 @@ function worx_blog_views_default_views() {
       'relationship' => 'none',
     ),
   ));
+  $handler->override_option('css_class', 'worx-blog-template-one');
+  $handler->override_option('footer', '<?php
+print l(variable_get(\'worx_blog_read_all_text\', \'Read All\'), variable_get(\'worx_blog_read_all_path\', \'blog\'));
+?>');
+  $handler->override_option('footer_format', '3');
+  $handler->override_option('footer_empty', 0);
   $handler->override_option('use_ajax', TRUE);
   $handler->override_option('use_pager', 'mini');
   $handler->override_option('block_description', 'Worx Blog: Blog Block Template Two');
   $handler->override_option('block_caching', -1);
+  $handler = $view->new_display('panel_pane', 'Blog Node Images Temp 1', 'panel_pane_5');
+  $handler->override_option('fields', array(
+    'field_worx_blog_be_image_fid' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 0,
+      'label_type' => 'none',
+      'format' => 'imagefield__lightbox2__worx_blog_be_scale_200w__original',
+      'multiple' => array(
+        'group' => 1,
+        'multiple_number' => '1',
+        'multiple_from' => '0',
+        'multiple_reversed' => 0,
+      ),
+      'exclude' => 0,
+      'id' => 'field_worx_blog_be_image_fid',
+      'table' => 'node_data_field_worx_blog_be_image',
+      'field' => 'field_worx_blog_be_image_fid',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+      'relationship' => 'none',
+    ),
+    'field_worx_blog_be_image_fid_1' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 0,
+      'label_type' => 'none',
+      'format' => 'imagefield__lightbox2__worx_blog_be_thumb_45w_45h__original',
+      'multiple' => array(
+        'group' => 1,
+        'multiple_number' => '',
+        'multiple_from' => '1',
+        'multiple_reversed' => 0,
+      ),
+      'exclude' => 0,
+      'id' => 'field_worx_blog_be_image_fid_1',
+      'table' => 'node_data_field_worx_blog_be_image',
+      'field' => 'field_worx_blog_be_image_fid',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+      'relationship' => 'none',
+    ),
+  ));
+  $handler->override_option('pane_title', 'Worx Blog: Blog Node Images Temp One');
+  $handler->override_option('pane_description', '');
+  $handler->override_option('pane_category', array(
+    'name' => 'View panes',
+    'weight' => 0,
+  ));
+  $handler->override_option('allow', array(
+    'use_pager' => FALSE,
+    'items_per_page' => FALSE,
+    'offset' => FALSE,
+    'link_to_view' => FALSE,
+    'more_link' => FALSE,
+    'path_override' => FALSE,
+    'title_override' => FALSE,
+    'exposed_form' => FALSE,
+    'fields_override' => FALSE,
+  ));
+  $handler->override_option('argument_input', array());
+  $handler->override_option('link_to_view', 0);
+  $handler->override_option('inherit_panels_path', 0);
 
   $views[$view->name] = $view;
 

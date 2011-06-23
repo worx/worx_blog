@@ -48,6 +48,20 @@ function worx_blog_imagecache_default_presets() {
         ),
       ),
     ),
+    'worx_blog_be_thumb_45w_45h' => array(
+      'presetname' => 'worx_blog_be_thumb_45w_45h',
+      'actions' => array(
+        '0' => array(
+          'weight' => '0',
+          'module' => 'imagecache',
+          'action' => 'imagecache_resize',
+          'data' => array(
+            'width' => '45',
+            'height' => '45',
+          ),
+        ),
+      ),
+    ),
   );
   return $items;
 }

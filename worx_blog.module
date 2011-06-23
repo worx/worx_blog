@@ -6,7 +6,7 @@ include_once('worx_blog.features.inc');
  * Implementation of hook_perm().
  */
 function worx_blog_perm() {
-  return array('worx_blog change templates'); 
+  return array('worx_blog change templates', 'worx_blog block overrides'); 
 }
 
 /**
