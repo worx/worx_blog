@@ -68,8 +68,8 @@ function worx_blog_default_page_manager_handlers() {
       'label' => 'normal',
       'formatter' => 'imagefield__lightbox2__worx_blog_be_scale_200w__original',
       'context' => 'argument_nid_1',
-      'override_title' => 0,
-      'override_title_text' => '',
+      'override_title' => 1,
+      'override_title_text' => '<none>',
     );
     $pane->cache = array();
     $pane->style = array(
