@@ -13,5 +13,8 @@
   .worx-blog-template-one .views-field-nothing {clear: both; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #D2D2D2;}
   .worx-blog-template-one .views-row-last .views-field-nothing {border: none;}
 	
+	#worx-blog-template-one .pane-node-author {float: left; margin-right: 5px}
+	#worx-blog-template-one .pane-node-created {clear: right;}
+	
 	/* Css for hiding duplicate node on comment preview */
 	.pane-node-comment-form div.node {display: none;}

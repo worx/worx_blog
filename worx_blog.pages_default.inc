@@ -60,6 +60,50 @@ function worx_blog_default_page_manager_handlers() {
     $pane = new stdClass;
     $pane->pid = 'new-1';
     $pane->panel = 'middle';
+    $pane->type = 'node_author';
+    $pane->subtype = 'node_author';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'link' => 0,
+      'context' => 'argument_nid_1',
+      'override_title' => 1,
+      'override_title_text' => '<none>',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $display->content['new-1'] = $pane;
+    $display->panels['middle'][0] = 'new-1';
+    $pane = new stdClass;
+    $pane->pid = 'new-2';
+    $pane->panel = 'middle';
+    $pane->type = 'node_created';
+    $pane->subtype = 'node_created';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'format' => 'small',
+      'context' => 'argument_nid_1',
+      'override_title' => 1,
+      'override_title_text' => '<none>',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $display->content['new-2'] = $pane;
+    $display->panels['middle'][1] = 'new-2';
+    $pane = new stdClass;
+    $pane->pid = 'new-3';
+    $pane->panel = 'middle';
     $pane->type = 'content_field';
     $pane->subtype = 'field_worx_blog_be_image';
     $pane->shown = TRUE;
@@ -77,11 +121,11 @@ function worx_blog_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
-    $display->content['new-1'] = $pane;
-    $display->panels['middle'][0] = 'new-1';
+    $pane->position = 2;
+    $display->content['new-3'] = $pane;
+    $display->panels['middle'][2] = 'new-3';
     $pane = new stdClass;
-    $pane->pid = 'new-2';
+    $pane->pid = 'new-4';
     $pane->panel = 'middle';
     $pane->type = 'node_body';
     $pane->subtype = 'node_body';
@@ -98,11 +142,11 @@ function worx_blog_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
-    $display->content['new-2'] = $pane;
-    $display->panels['middle'][1] = 'new-2';
+    $pane->position = 3;
+    $display->content['new-4'] = $pane;
+    $display->panels['middle'][3] = 'new-4';
     $pane = new stdClass;
-    $pane->pid = 'new-3';
+    $pane->pid = 'new-5';
     $pane->panel = 'middle';
     $pane->type = 'node_terms';
     $pane->subtype = 'node_terms';
@@ -123,11 +167,11 @@ function worx_blog_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 2;
-    $display->content['new-3'] = $pane;
-    $display->panels['middle'][2] = 'new-3';
+    $pane->position = 4;
+    $display->content['new-5'] = $pane;
+    $display->panels['middle'][4] = 'new-5';
     $pane = new stdClass;
-    $pane->pid = 'new-4';
+    $pane->pid = 'new-6';
     $pane->panel = 'middle';
     $pane->type = 'block';
     $pane->subtype = 'addthis-0';
@@ -143,11 +187,11 @@ function worx_blog_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 3;
-    $display->content['new-4'] = $pane;
-    $display->panels['middle'][3] = 'new-4';
+    $pane->position = 5;
+    $display->content['new-6'] = $pane;
+    $display->panels['middle'][5] = 'new-6';
     $pane = new stdClass;
-    $pane->pid = 'new-5';
+    $pane->pid = 'new-7';
     $pane->panel = 'middle';
     $pane->type = 'block';
     $pane->subtype = 'fb_social_like-like';
@@ -163,33 +207,11 @@ function worx_blog_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 4;
-    $display->content['new-5'] = $pane;
-    $display->panels['middle'][4] = 'new-5';
+    $pane->position = 6;
+    $display->content['new-7'] = $pane;
+    $display->panels['middle'][6] = 'new-7';
     $pane = new stdClass;
-    $pane->pid = 'new-6';
-    $pane->panel = 'middle';
-    $pane->type = 'node_comment_form';
-    $pane->subtype = 'node_comment_form';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'anon_links' => 0,
-      'context' => 'argument_nid_1',
-      'override_title' => 0,
-      'override_title_text' => '',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 5;
-    $display->content['new-6'] = $pane;
-    $display->panels['middle'][5] = 'new-6';
-    $pane = new stdClass;
-    $pane->pid = 'new-7';
+    $pane->pid = 'new-8';
     $pane->panel = 'middle';
     $pane->type = 'node_comments';
     $pane->subtype = 'node_comments';
@@ -210,9 +232,31 @@ function worx_blog_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 6;
-    $display->content['new-7'] = $pane;
-    $display->panels['middle'][6] = 'new-7';
+    $pane->position = 7;
+    $display->content['new-8'] = $pane;
+    $display->panels['middle'][7] = 'new-8';
+    $pane = new stdClass;
+    $pane->pid = 'new-9';
+    $pane->panel = 'middle';
+    $pane->type = 'node_comment_form';
+    $pane->subtype = 'node_comment_form';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'anon_links' => 0,
+      'context' => 'argument_nid_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 8;
+    $display->content['new-9'] = $pane;
+    $display->panels['middle'][8] = 'new-9';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
@@ -709,7 +753,7 @@ else {
     'parent' => array(
       'type' => 'normal',
       'title' => 'Blog',
-      'name' => 'navigation',
+      'name' => 'primary-links',
       'weight' => '0',
     ),
   );
