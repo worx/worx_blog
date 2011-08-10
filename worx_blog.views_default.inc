@@ -1165,8 +1165,8 @@ print l(variable_get(\'worx_blog_read_all_text\', \'Read All\'), variable_get(\'
     'title' => array(
       'label' => '',
       'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
+        'alter_text' => 1,
+        'text' => '<h2 class="title">[title]</h2>',
         'make_link' => 0,
         'path' => '',
         'link_class' => '',
