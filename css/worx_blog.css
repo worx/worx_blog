@@ -18,3 +18,9 @@
 	
 	/* Css for hiding duplicate node on comment preview */
 	.pane-node-comment-form div.node {display: none;}
+	
+	/* Css for fixing mix and match on the display of author and post date */
+	#worx-blog-template-one .pane-node-author .inner {margin: 0;}
+  #worx-blog-template-one .pane-node-author .content {padding: 0;}
+  #worx-blog-template-one .pane-node-created .inner {margin: 0;}
+  #worx-blog-template-one .pane-node-created .content {padding: 0;}
